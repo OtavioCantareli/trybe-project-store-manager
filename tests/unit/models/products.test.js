@@ -2,21 +2,21 @@ const sinon = require("sinon");
 const { expect } = require("chai");
 const { allProducts, singleProduct } = require("../mocks/products");
 const connection = require("../../../models/connection");
-const Products = require('../../../models/Products');
+const { getAll } = require('../../../models/Products');
 
 const error = { message: "Product not found" };
 
 describe("Requesting products with GET", () => {
   describe("All products", async () => {
     beforeEach(async () => {
-      sinon.stub(connection).resolves(allProducts);
+      sinon.stub(connection, 'execute').resolves(allProducts);
     });
 
     afterEach(async () => {
       connection.execute.restore();
     });
 
-    const response = await Products.getAll();
+    const response = await getAll();
     
     it("Returns an object", () => {
       expect(response).to.equal(allProducts);
@@ -32,13 +32,13 @@ describe("Requesting products with GET", () => {
   });
 
   describe("Single product", async () => {
-    // beforeEach(async () => {
-    //   sinon.stub(connection, "execute").resolves(singleProduct);
-    // });
+    beforeEach(async () => {
+      sinon.stub(connection, "execute").resolves(singleProduct);
+    });
 
-    // afterEach(async () => {
-    //   connection.execute.restore();
-    // });
+    afterEach(async () => {
+      connection.execute.restore();
+    });
     
     const response = await Products.findById(1);
     
