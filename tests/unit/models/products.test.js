@@ -4,9 +4,7 @@ const { allProducts, singleProduct } = require("../mocks/products");
 const connection = require("../../../models/connection");
 const { getAll, findById } = require('../../../models/Products');
 
-const error = { message: "Product not found" };
-
-describe("Requesting products with GET", () => {
+describe("MODEL", () => {
   describe("All products", () => {
 
     const execute = [allProducts]
