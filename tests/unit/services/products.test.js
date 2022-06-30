@@ -7,12 +7,12 @@ const error = require('../../../middlewares/error');
 describe("SERVICE", () => {
   describe("All products", () => {
 
-    afterEach(() => {
-      Products.getAll.restore();
-    });
+    // afterEach(() => {
+    //   Products.getAll.restore();
+    // });
 
     it("Returns error when product does not exist", async () => {
-      sinon.stub(Products, "getAll").resolves(error);
+      // sinon.stub(Products, "getAll").resolves([]);
       const response = await Products.getAll();
       expect(response).to.equal(error);
     });
@@ -26,12 +26,12 @@ describe("SERVICE", () => {
 
   describe("Single product", () => {
 
-    afterEach(() => {
-      Products.findById.restore();
-    });
+    // afterEach(() => {
+    //   Products.findById.restore();
+    // });
 
     it("Returns error when product does not exist", async () => {
-      sinon.stub(Products, "findById").resolves(error);
+      // sinon.stub(Products, "findById").rejects(error);
       const response = await Products.findById(999999999);
       expect(response).to.equal(error);
     });
