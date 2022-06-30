@@ -6,40 +6,38 @@ const error = require('../../../middlewares/error');
 
 describe("SERVICE", () => {
   describe("All products", () => {
-    beforeEach(() => {
-      sinon.stub(Products, "getAll").resolves(allProducts);
-    });
 
     afterEach(() => {
       Products.getAll.restore();
     });
 
     it("Returns error when product does not exist", async () => {
+      sinon.stub(Products, "getAll").resolves(error);
       const response = await Products.getAll();
       expect(response).to.equal(error);
     });
 
     it("Returns an object", async () => {
+      sinon.stub(Products, "getAll").resolves(allProducts);
       const response = await Products.getAll();
       expect(response).to.equal(allProducts);
     });
   });
 
   describe("Single product", () => {
-    beforeEach(() => {
-      sinon.stub(Products, "findById").resolves(singleProduct);
-    });
 
     afterEach(() => {
       Products.findById.restore();
     });
 
     it("Returns error when product does not exist", async () => {
+      sinon.stub(Products, "findById").resolves(error);
       const response = await Products.findById(999999999);
       expect(response).to.equal(error);
     });
 
     it("Returns an object", async () => {
+      sinon.stub(Products, "findById").resolves(singleProduct);
       const response = await Products.findById(1);
       expect(response).to.equal(singleProduct);
     });
