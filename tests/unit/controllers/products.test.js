@@ -61,4 +61,57 @@ describe("CONTROLLER", () => {
       })
     });
   })
+
+  describe("Single product", () => {
+    describe("Failure", () => {
+      before(() => {
+        req.body = {};
+
+        res.status = sinon.stub().returns(res);
+        res.send = sinon.stub().returns();
+
+        sinon.stub(ProductsService, "findById").resolves(false);
+      });
+
+      after(() => {
+        ProductsService.findById.restore();
+      });
+
+      it("Returns correct status when products not found", async () => {
+        await ProductsController.findById(req, res);
+        expect(res.status.calledWith(404)).to.equal(true);
+      });
+
+      it("Returns correct message when products not found", async () => {
+        await ProductsController.findById(req, res);
+        expect(res.send.calledWith(error)).to.equal(true);
+      });
+    });
+
+    describe("Success", () => {
+      before(() => {
+
+        req.body = allProducts;
+
+        res.status = sinon.stub().returns(res);
+        res.send = sinon.stub().returns();
+
+        sinon.stub(ProductsService, 'findById').resolves(true);
+      });
+
+      after(() => {
+        ProductsService.findById.restore();
+      });
+
+      it('Called with correct status', async () => {
+        await ProductsController.findById(req, res);
+        expect(res.status.calledWith(200)).to.equal(true);
+      })
+
+      it('Returns correct object', async () => {
+        await ProductsController.findById(req, res);
+        expect(res.send.calledWith(singleProduct)).to.equal(false);
+      })
+    });
+  })
 });
