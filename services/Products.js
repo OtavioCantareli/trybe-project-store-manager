@@ -3,7 +3,6 @@ const error = require('../middlewares/error');
 
 const getAll = async () => {
   const object = await Products.getAll();
-  console.log(object);
   if (object.length < 1) return error;
   return object;
 };
