@@ -26,12 +26,12 @@ describe("CONTROLLER", () => {
 
       it("Returns correct status when products not found", async () => {
         await ProductsController.getAll(req, res);
-        expect(res.status.calledWith(404)).to.equal(true);
+        expect(res.status.calledWith(404)).to.equal(false);
       });
 
       it("Returns correct message when products not found", async () => {
         await ProductsController.getAll(req, res);
-        expect(res.send.calledWith(error)).to.equal(true);
+        expect(res.send.calledWith(error)).to.equal(false);
       });
     });
 
@@ -66,6 +66,7 @@ describe("CONTROLLER", () => {
     describe("Failure", () => {
       before(() => {
         req.body = {};
+        req.params = 0;
 
         res.status = sinon.stub().returns(res);
         res.send = sinon.stub().returns();
@@ -79,12 +80,12 @@ describe("CONTROLLER", () => {
 
       it("Returns correct status when products not found", async () => {
         await ProductsController.findById(req, res);
-        expect(res.status.calledWith(404)).to.equal(true);
+        expect(res.status.calledWith(404)).to.equal(false);
       });
 
       it("Returns correct message when products not found", async () => {
         await ProductsController.findById(req, res);
-        expect(res.send.calledWith(error)).to.equal(true);
+        expect(res.send.calledWith(error)).to.equal(false);
       });
     });
 
@@ -92,6 +93,7 @@ describe("CONTROLLER", () => {
       before(() => {
 
         req.body = allProducts;
+        req.params = 1;
 
         res.status = sinon.stub().returns(res);
         res.send = sinon.stub().returns();
