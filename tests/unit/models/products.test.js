@@ -1,6 +1,6 @@
 const sinon = require("sinon");
 const { expect } = require("chai");
-const { allProducts, singleProduct, insertProduct } = require("../mocks/products");
+const { allProducts, singleProduct, resultInsertProduct } = require("../mocks/products");
 const connection = require("../../../models/connection");
 const { getAll, findById, insert } = require('../../../models/Products');
 
@@ -40,10 +40,10 @@ describe("MODEL", () => {
     });
 
     it('Returns ok message', async () => {
-      const execute = [insertProduct]
+      const execute = [resultInsertProduct]
       sinon.stub(connection, "execute").resolves(execute);
       const response = await insert('ProdutoX');
-      expect(response).to.equal(insertProduct);
+      expect(response).to.equal(resultInsertProduct);
     })
   });
 });
