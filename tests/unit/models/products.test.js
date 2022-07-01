@@ -1,11 +1,11 @@
 const sinon = require("sinon");
 const { expect } = require("chai");
-const { allProducts, singleProduct } = require("../mocks/products");
+const { allProducts, singleProduct, insertProduct } = require("../mocks/products");
 const connection = require("../../../models/connection");
-const { getAll, findById } = require('../../../models/Products');
+const { getAll, findById, insert } = require('../../../models/Products');
 
 describe("MODEL", () => {
-  describe("All products", () => {
+  describe("Get all products", () => {
 
     afterEach(async () => {
       connection.execute.restore();
@@ -19,7 +19,7 @@ describe("MODEL", () => {
     });
   });
 
-  describe("Single product", () => {
+  describe("Get single product", () => {
 
     afterEach(async () => {
       connection.execute.restore();
@@ -31,5 +31,19 @@ describe("MODEL", () => {
       const response = await findById(1);
       expect(response).to.equal(singleProduct);
     });
+  });
+
+  describe('Create product', () => {
+
+    afterEach(async () => {
+      connection.execute.restore();
+    });
+
+    it('Returns ok message', async () => {
+      const execute = [insertProduct]
+      sinon.stub(connection, "execute").resolves(execute);
+      const response = await insert('ProdutoX');
+      expect(response).to.equal(insertProduct);
+    })
   });
 });
