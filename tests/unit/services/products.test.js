@@ -42,7 +42,7 @@ describe("SERVICE", () => {
     });
 
     it("Object equals mock", async () => {
-      const response = await Products.insert('ProdutoX');
+      const response = await Products.insert("ProdutoX");
       expect(response).to.equal(resultInsertProduct);
     });
   });

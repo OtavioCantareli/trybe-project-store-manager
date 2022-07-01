@@ -1,7 +1,12 @@
 const sinon = require("sinon");
 const { expect } = require("chai");
-const { allProducts, singleProduct, insertProduct, resultInsertProduct } = require("../mocks/products");
-const error = require('../../../middlewares/error');
+const {
+  allProducts,
+  singleProduct,
+  insertProduct,
+  resultInsertProduct,
+} = require("../mocks/products");
+const error = require("../../../middlewares/error");
 
 const ProductsService = require("../../../services/Products");
 const ProductsController = require("../../../controllers/Products");
@@ -37,28 +42,27 @@ describe("CONTROLLER", () => {
 
     describe("Success", () => {
       before(() => {
-        
         res.status = sinon.stub().returns(res);
         res.send = sinon.stub().returns();
 
-        sinon.stub(ProductsService, 'getAll').resolves(true);
+        sinon.stub(ProductsService, "getAll").resolves(true);
       });
 
       after(() => {
         ProductsService.getAll.restore();
       });
 
-      it('Called with correct status', async () => {
+      it("Called with correct status", async () => {
         await ProductsController.getAll(req, res);
         expect(res.status.calledWith(200)).to.equal(true);
-      })
+      });
 
-      it('Returns correct object', async () => {
+      it("Returns correct object", async () => {
         await ProductsController.getAll(req, res);
         expect(res.send.calledWith(allProducts)).to.equal(false);
-      })
+      });
     });
-  })
+  });
 
   describe("Single product", () => {
     describe("Failure", () => {
@@ -89,54 +93,52 @@ describe("CONTROLLER", () => {
 
     describe("Success", () => {
       before(() => {
-
         req.params = 1;
 
         res.status = sinon.stub().returns(res);
         res.send = sinon.stub().returns();
 
-        sinon.stub(ProductsService, 'findById').resolves(true);
+        sinon.stub(ProductsService, "findById").resolves(true);
       });
 
       after(() => {
         ProductsService.findById.restore();
       });
 
-      it('Called with correct status', async () => {
+      it("Called with correct status", async () => {
         await ProductsController.findById(req, res);
         expect(res.status.calledWith(200)).to.equal(true);
-      })
+      });
 
-      it('Returns correct object', async () => {
+      it("Returns correct object", async () => {
         await ProductsController.findById(req, res);
         expect(res.send.calledWith(singleProduct)).to.equal(false);
-      })
+      });
     });
-  })
+  });
 
-  describe('Create product', () => {
+  describe("Create product", () => {
     before(() => {
-
       req.body = insertProduct;
 
       res.status = sinon.stub().returns(res);
       res.send = sinon.stub().returns();
 
-      sinon.stub(ProductsService, 'insert').resolves(true);
+      sinon.stub(ProductsService, "insert").resolves(true);
     });
 
     after(() => {
       ProductsService.insert.restore();
     });
 
-    it('Called with correct status', async () => {
+    it("Called with correct status", async () => {
       await ProductsController.insert(req, res);
       expect(res.status.calledWith(201)).to.equal(true);
-    })
+    });
 
-    it('Returns correct object', async () => {
+    it("Returns correct object", async () => {
       await ProductsController.insert(req, res);
       expect(res.send.calledWith(resultInsertProduct)).to.equal(false);
-    })
-  })
+    });
+  });
 });
