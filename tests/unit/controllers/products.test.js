@@ -1,6 +1,6 @@
 const sinon = require("sinon");
 const { expect } = require("chai");
-const { allProducts, singleProduct } = require("../mocks/products");
+const { allProducts, singleProduct, insertProduct, resultInsertProduct } = require("../mocks/products");
 const error = require('../../../middlewares/error');
 
 const ProductsService = require("../../../services/Products");
@@ -37,8 +37,6 @@ describe("CONTROLLER", () => {
 
     describe("Success", () => {
       before(() => {
-
-        req.body = allProducts;
         
         res.status = sinon.stub().returns(res);
         res.send = sinon.stub().returns();
@@ -92,7 +90,6 @@ describe("CONTROLLER", () => {
     describe("Success", () => {
       before(() => {
 
-        req.body = allProducts;
         req.params = 1;
 
         res.status = sinon.stub().returns(res);
@@ -115,5 +112,31 @@ describe("CONTROLLER", () => {
         expect(res.send.calledWith(singleProduct)).to.equal(false);
       })
     });
+  })
+
+  describe('Create product', () => {
+    before(() => {
+
+      req.body = insertProduct;
+
+      res.status = sinon.stub().returns(res);
+      res.send = sinon.stub().returns();
+
+      sinon.stub(ProductsService, 'insert').resolves(true);
+    });
+
+    after(() => {
+      ProductsService.insert.restore();
+    });
+
+    it('Called with correct status', async () => {
+      await ProductsController.insert(req, res);
+      expect(res.status.calledWith(201)).to.equal(true);
+    })
+
+    it('Returns correct object', async () => {
+      await ProductsController.insert(req, res);
+      expect(res.send.calledWith(resultInsertProduct)).to.equal(false);
+    })
   })
 });
