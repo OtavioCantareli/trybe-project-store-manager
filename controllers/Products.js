@@ -14,9 +14,9 @@ const findById = async (req, res) => {
 const insert = async (req, res) => {
   const { name } = req.body;
   const product = await Products.insert(name);
-  const { id } = product;
+  const { insertId } = product;
   return res.status(201).send({
-    id,
+    id: insertId,
     name,
   });
 };
