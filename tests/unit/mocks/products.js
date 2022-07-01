@@ -18,8 +18,14 @@ const insertProduct = {
   name: "ProdutoX",
 };
 
+const resultInsertProduct = {
+  id: 4,
+  name: "ProdutoX",
+};
+
 module.exports = {
   allProducts,
   singleProduct,
   insertProduct,
+  resultInsertProduct,
 };
