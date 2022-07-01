@@ -14,7 +14,12 @@ const singleProduct = {
   name: "Martelo de Thor",
 };
 
+const insertProduct = {
+  name: "ProdutoX",
+};
+
 module.exports = {
   allProducts,
   singleProduct,
+  insertProduct,
 };
