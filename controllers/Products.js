@@ -8,6 +8,9 @@ const getAll = async (_req, res) => {
 const findById = async (req, res) => {
   const { id } = req.params;
   const product = await Products.findById(id);
+  if (product.length < 1) {
+    return res.status(404).send({ message: 'Product not found' });
+  }
   return res.status(200).send(product[0]);
 };
 
