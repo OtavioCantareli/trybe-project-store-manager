@@ -4,6 +4,8 @@ const {
   allProducts,
   singleProduct,
   resultInsertProduct,
+  insertSales,
+  resultInsertSales,
 } = require("../mocks/products");
 const connection = require("../../../models/connection");
 const { getAll, findById, insert } = require("../../../models/Products");
@@ -40,11 +42,24 @@ describe("MODEL", () => {
       connection.execute.restore();
     });
 
-    it("Returns ok message", async () => {
+    it("Returns an object", async () => {
       const execute = [resultInsertProduct];
       sinon.stub(connection, "execute").resolves(execute);
       const response = await insert("ProdutoX");
       expect(response).to.equal(resultInsertProduct);
     });
   });
+
+  describe("Insert sale", () => {
+    afterEach(async () => {
+      connection.execute.restore();
+    });
+
+    it("Returns an object", async () => {
+      const execute = [resultInsertSales];
+      sinon.stub(connection, "execute").resolves(execute);
+      const response = await insert(insertSales);
+      expect(response).to.equal(resultInsertSales);
+    });
+  })
 });
