@@ -4,6 +4,8 @@ const {
   allProducts,
   singleProduct,
   resultInsertProduct,
+  resultInsertSales,
+  insertSales,
 } = require("../mocks/products");
 const Products = require("../../../services/Products");
 
@@ -44,6 +46,19 @@ describe("SERVICE", () => {
     it("Object equals mock", async () => {
       const response = await Products.insert("ProdutoX");
       expect(response).to.equal(resultInsertProduct);
+    });
+  });
+
+  describe("Insert sale", () => {
+    it("Returns an object", async () => {
+      sinon.stub(Products, "insertSale").resolves(resultInsertSales);
+      const response = await Products.insertSale(insertSales);
+      expect(response).to.be.instanceOf(Object);
+    });
+
+    it("Object equals mock", async () => {
+      const response = await Products.insertSale(insertSales);
+      expect(response).to.equal(resultInsertSales);
     });
   });
 });
