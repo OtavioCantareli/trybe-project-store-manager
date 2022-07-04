@@ -23,7 +23,7 @@ const insert = async (name) => {
   return product;
 };
 
-const insertSale = async ({ productId, quantity }) => {
+const insertSale = async (productId, quantity) => {
   const [sale] = await connection.execute(
     'INSERT INTO SotreManager.sales (productId, quantity) VALUES (?, ?)',
     [productId, quantity],

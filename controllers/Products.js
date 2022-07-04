@@ -1,3 +1,4 @@
+const { validateId } = require('../middlewares/validateIdAndQuant');
 const Products = require('../services/Products');
 
 const getAll = async (_req, res) => {
@@ -24,8 +25,16 @@ const insert = async (req, res) => {
   });
 };
 
+const insertSale = async (req, res) => {
+  validateId(req, res);
+  const { productId, quantity } = req.body;
+  const sale = await Products.insertSale(productId, quantity);
+  return res.status(201).send(sale);
+};
+
 module.exports = {
   getAll,
   findById,
   insert,
+  insertSale,
 };

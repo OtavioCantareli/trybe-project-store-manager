@@ -15,8 +15,8 @@ const insert = async (name) => {
   return object;
 };
 
-const insertSale = async ({ productId, quantity }) => {
-  const sale = await Products.insertSale({ productId, quantity });
+const insertSale = async (productId, quantity) => {
+  const sale = await Products.insertSale(productId, quantity);
   return sale;
 };
 

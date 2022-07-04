@@ -6,6 +6,10 @@ app.use(express.json());
 
 const ProductsController = require('./controllers/Products');
 const validateName = require('./middlewares/validateName');
+// const {
+//   // validateId,
+//   validateQuant,
+// } = require('./middlewares/validateIdAndQuant');
 
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
@@ -18,6 +22,9 @@ app.get('/products/:id', (req, res) => ProductsController.findById(req, res));
 
 app.post('/products', validateName, (req, res) =>
   ProductsController.insert(req, res));
+
+// app.post('/sales', validateQuant, (req, res) =>
+//   ProductsController.insertSale(req, res));
 
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima
