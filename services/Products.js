@@ -1,5 +1,7 @@
 const Products = require('../models/Products');
 
+let idSale;
+
 const getAll = async () => {
   const object = await Products.getAll();
   return object;
@@ -15,13 +17,16 @@ const insert = async (name) => {
   return object;
 };
 
-// const insertSale = async (sales) => {
-//   const sale = await Promise.all(
-//     sales.map((sal) => Products.insertSale(sal.productId, sal.quantity)),
-//   );
-//   console.log('service', sale.insertId);
-//   return sale;
-// };
+const addProd = ({ productId, quantity }) => {
+  Products.insertSale({ saleId: idSale, productId, quantity });
+  return { productId, quantity };
+};
+
+const insertSale = async (sales) => {
+  idSale = await Products.addSale();
+  const itemsSold = sales.map(addProd);
+  return { prods: { id: idSale, itemsSold } };
+};
 
 const getAllSales = async () => {
   const sales = await Products.getAllSales();
@@ -50,7 +55,7 @@ module.exports = {
   getAll,
   findById,
   insert,
-  // insertSale,
+  insertSale,
   getAllSales,
   getSalesById,
 };

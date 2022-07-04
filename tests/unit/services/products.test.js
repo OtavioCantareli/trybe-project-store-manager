@@ -49,16 +49,16 @@ describe("SERVICE", () => {
     });
   });
 
-  // describe("Insert sale", () => {
-  //   it("Returns an object", async () => {
-  //     sinon.stub(Products, "insertSale").resolves(resultInsertSales);
-  //     const response = await Products.insertSale(insertSales);
-  //     expect(response).to.be.instanceOf(Object);
-  //   });
+  describe("Insert sale", () => {
+    it("Returns an object", async () => {
+      sinon.stub(Products, "insertSale").resolves(resultInsertSales);
+      const response = await Products.insertSale(insertSales);
+      expect(response).to.be.instanceOf(Object);
+    });
 
-  //   it("Object equals mock", async () => {
-  //     const response = await Products.insertSale(insertSales);
-  //     expect(response).to.equal(resultInsertSales);
-  //   });
-  // });
+    it("Object equals mock", async () => {
+      const response = await Products.insertSale(insertSales);
+      expect(response).to.equal(resultInsertSales);
+    });
+  });
 });

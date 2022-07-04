@@ -23,14 +23,20 @@ const insert = async (name) => {
   return product;
 };
 
-// const insertSale = async (productId, quantity) => {
-//   const [sale] = await connection.execute(
-//     'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (1, ?, ?)',
-//     [productId, quantity],
-//   );
-//   // console.log('model', sale);
-//   return sale;
-// };
+const addSale = async () => {
+  const [{ insertId }] = await connection.execute(
+    'INSERT INTO StoreManager.sales (date) VALUES (NOW())',
+  );
+  return insertId;
+};
+
+const insertSale = async ({ saleId, productId, quantity }) => {
+  const [sale] = await connection.execute(
+    'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)',
+    [saleId, productId, quantity],
+  );
+  return sale;
+};
 
 const getAllSales = async () => {
   const [sales] = await connection.execute(
@@ -60,7 +66,8 @@ module.exports = {
   getAll,
   findById,
   insert,
-  // insertSale,
+  insertSale,
   getAllSales,
   getSalesById,
+  addSale,
 };

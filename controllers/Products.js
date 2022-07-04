@@ -24,12 +24,11 @@ const insert = async (req, res) => {
   });
 };
 
-// const insertSale = async (req, res) => {
-//   const obj = req.body;
-//   const sale = await Products.insertSale(obj);
-//   // console.log('controller', sale);
-//   return res.status(201).send(sale.insertId);
-// };
+const insertSale = async (req, res) => {
+  const obj = req.body;
+  const { prods } = await Products.insertSale(obj);
+  return res.status(201).json(prods);
+};
 
 const getAllSales = async (_req, res) => {
   const sales = await Products.getAllSales();
@@ -49,7 +48,7 @@ module.exports = {
   getAll,
   findById,
   insert,
-  // insertSale,
+  insertSale,
   getAllSales,
   getSalesById,
 };
