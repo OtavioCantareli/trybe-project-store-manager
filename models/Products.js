@@ -25,9 +25,10 @@ const insert = async (name) => {
 
 const insertSale = async (productId, quantity) => {
   const [sale] = await connection.execute(
-    'INSERT INTO SotreManager.sales (productId, quantity) VALUES (?, ?)',
+    'INSERT INTO StoreManager.sales_products (product_id, quantity) VALUES (?, ?)',
     [productId, quantity],
   );
+  // console.log('insertSale', sale);
   return sale;
 };
 

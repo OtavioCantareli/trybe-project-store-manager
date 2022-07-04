@@ -15,8 +15,10 @@ const insert = async (name) => {
   return object;
 };
 
-const insertSale = async (productId, quantity) => {
-  const sale = await Products.insertSale(productId, quantity);
+const insertSale = async (sales) => {
+  const sale = await Promise.all(
+    sales.map((sal) => console.log(sal)),
+  );
   return sale;
 };
 
