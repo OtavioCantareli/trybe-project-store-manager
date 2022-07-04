@@ -44,6 +44,17 @@ const getSalesById = async (req, res) => {
   return res.status(200).json(sales);
 };
 
+const updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const prod = await Products.findById(id);
+  if (prod.length < 1) {
+    return res.status(404).json({ message: 'Product not found' });
+  }
+  const { name } = req.body;
+  await Products.updateProduct({ id, name });
+  res.status(200).json({ id, name });
+};
+
 module.exports = {
   getAll,
   findById,
@@ -51,4 +62,5 @@ module.exports = {
   insertSale,
   getAllSales,
   getSalesById,
+  updateProduct,
 };

@@ -51,6 +51,27 @@ const getSalesById = async (id) => {
   return sale;
 };
 
+const updateProduct = async ({ id, name }) => {
+  // if (!name) return { code: 400, message: '"name" is required' };
+  // if (name.length < 5) {
+  //   return {
+  //     code: 422,
+  //     message: '"name" length must be at least 5 characters long'
+  //   };
+  // }
+  // const prod = await Products.findById(id);
+  // if (exists.length === 0) return { code: 404, message: 'Product not found' };
+  await Products.updateProduct({ id, name });
+  return { id, name };
+};
+
+const deleteProduct = async (id) => {
+  // const exists = await Products.findById(id);
+  // if (exists.length === 0) return { code: 404, message: 'Product not found' };
+  await Products.delete(id);
+  return true;
+};
+
 module.exports = {
   getAll,
   findById,
@@ -58,4 +79,6 @@ module.exports = {
   insertSale,
   getAllSales,
   getSalesById,
+  updateProduct,
+  deleteProduct,
 };
