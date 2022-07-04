@@ -8,7 +8,7 @@ const {
   resultInsertSales,
 } = require("../mocks/products");
 const connection = require("../../../models/connection");
-const { getAll, findById, insert } = require("../../../models/Products");
+const { getAll, findById, insert, insertSale } = require("../../../models/Products");
 
 describe("MODEL", () => {
   describe("Get all products", () => {
@@ -58,7 +58,7 @@ describe("MODEL", () => {
     it("Returns an object", async () => {
       const execute = [resultInsertSales];
       sinon.stub(connection, "execute").resolves(execute);
-      const response = await insert(insertSales);
+      const response = await insertSale(insertSales);
       expect(response).to.equal(resultInsertSales);
     });
   })
