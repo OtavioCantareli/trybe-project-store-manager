@@ -31,9 +31,25 @@ const insert = async (req, res) => {
 //   return res.status(201).send(sale.insertId);
 // };
 
+const getAllSales = async (_req, res) => {
+  const sales = await Products.getAllSales();
+  return res.status(200).json(sales);
+};
+
+const getSalesById = async (req, res) => {
+  const { id } = req.params;
+  const sales = await Products.getSalesById(id);
+  if (sales.length < 1) {
+    return res.status(404).json({ message: 'Sale not found' });
+  }
+  return res.status(200).json(sales);
+};
+
 module.exports = {
   getAll,
   findById,
   insert,
   // insertSale,
+  getAllSales,
+  getSalesById,
 };

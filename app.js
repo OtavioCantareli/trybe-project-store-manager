@@ -26,6 +26,10 @@ app.post('/products', validateName, (req, res) =>
 // app.post('/sales', validateId, validateQuant, (req, res) =>
 //   ProductsController.insertSale(req, res));
 
+app.get('/sales', (req, res) => ProductsController.getAllSales(req, res));
+
+app.get('/sales/:id', (req, res) => ProductsController.getSalesById(req, res));
+
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima
 // você deve usar o arquivo index.js para executar sua aplicação
