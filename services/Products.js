@@ -15,16 +15,17 @@ const insert = async (name) => {
   return object;
 };
 
-const insertSale = async (sales) => {
-  const sale = await Promise.all(
-    sales.map((sal) => console.log(sal)),
-  );
-  return sale;
-};
+// const insertSale = async (sales) => {
+//   const sale = await Promise.all(
+//     sales.map((sal) => Products.insertSale(sal.productId, sal.quantity)),
+//   );
+//   console.log('service', sale.insertId);
+//   return sale;
+// };
 
 module.exports = {
   getAll,
   findById,
   insert,
-  insertSale,
+  // insertSale,
 };

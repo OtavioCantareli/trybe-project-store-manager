@@ -50,16 +50,16 @@ describe("MODEL", () => {
     });
   });
 
-  describe("Insert sale", () => {
-    afterEach(async () => {
-      connection.execute.restore();
-    });
+  // describe("Insert sale", () => {
+  //   afterEach(async () => {
+  //     connection.execute.restore();
+  //   });
 
-    it("Returns an object", async () => {
-      const execute = [resultInsertSales];
-      sinon.stub(connection, "execute").resolves(execute);
-      const response = await insertSale(insertSales);
-      expect(response).to.equal(resultInsertSales);
-    });
-  })
+  //   it("Returns an object", async () => {
+  //     const execute = [resultInsertSales];
+  //     sinon.stub(connection, "execute").resolves(execute);
+  //     const response = await insertSale(insertSales);
+  //     expect(response).to.equal(resultInsertSales);
+  //   });
+  // })
 });

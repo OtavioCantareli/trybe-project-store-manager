@@ -144,28 +144,28 @@ describe("CONTROLLER", () => {
     });
   });
 
-  describe('Insert sale', () => {
-    before(() => {
-      req.body = insertSales;
+  // describe('Insert sale', () => {
+  //   before(() => {
+  //     req.body = insertSales;
 
-      res.status = sinon.stub().returns(res);
-      res.send = sinon.stub().returns();
+  //     res.status = sinon.stub().returns(res);
+  //     res.send = sinon.stub().returns();
 
-      sinon.stub(ProductsService, 'insertSale').resolves(true);
-    });
+  //     sinon.stub(ProductsService, 'insertSale').resolves(true);
+  //   });
 
-    after(() => {
-      ProductsService.insertSale.restore();
-    });
+  //   after(() => {
+  //     ProductsService.insertSale.restore();
+  //   });
 
-    it("Called with correct status", async () => {
-      await ProductsController.insertSale(req, res);
-      expect(res.status.calledWith(201)).to.equal(true);
-    });
+  //   it("Called with correct status", async () => {
+  //     await ProductsController.insertSale(req, res);
+  //     expect(res.status.calledWith(201)).to.equal(true);
+  //   });
 
-    it("Returns correct object", async () => {
-      await ProductsController.insertSale(req, res);
-      expect(res.send.calledWith(resultInsertSales)).to.equal(false);
-    });
-  });
+  //   it("Returns correct object", async () => {
+  //     await ProductsController.insertSale(req, res);
+  //     expect(res.send.calledWith(resultInsertSales)).to.equal(false);
+  //   });
+  // });
 });

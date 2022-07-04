@@ -24,15 +24,16 @@ const insert = async (req, res) => {
   });
 };
 
-const insertSale = async (req, res) => {
-  const obj = req.body;
-  const sale = await Products.insertSale(obj);
-  return res.status(201).send(sale);
-};
+// const insertSale = async (req, res) => {
+//   const obj = req.body;
+//   const sale = await Products.insertSale(obj);
+//   // console.log('controller', sale);
+//   return res.status(201).send(sale.insertId);
+// };
 
 module.exports = {
   getAll,
   findById,
   insert,
-  insertSale,
+  // insertSale,
 };
