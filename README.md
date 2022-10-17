@@ -1,16 +1,5 @@
-# 🚧 README em construção 🚧
+# Hello there!
 
-<!-- Olá, Tryber!
-
-Esse é apenas um arquivo inicial para o README do seu projeto.
-
-É essencial que você preencha esse documento por conta própria, ok?
-
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
-
--->
+This project had the goal of helping the students understand and build a project using MVC (but with a different name used at school, MSC). <br>
+I did almost everything that is inside the following folders: /controllers, /middlewares, /models, /services and /tests/unit. <br>
+I made commits with weird messages, but that's because I was tired after days bashing my head against the wall.
